@@ -26,20 +26,34 @@ function createImageCardsMarkup(galleryItems) {
 console.log(createImageCardsMarkup(galleryItems));
 
 function onGalleryContainerClick(e) {
-    if (e.target.nodeName !== "IMG") return;
-
-    // if (!e.target.classlist.contains('gallery__image')) {
-    //     return;
-    // };
-
- e.preventDefault();
-    
+  e.preventDefault();
+  if (e.target.nodeName !== "IMG") {
+    return
+  };
+ 
 
  const instance = basicLightbox.create(`
     <img src="${e.target.dataset.source}" width="800" height="600">
 `)
-
+ 
 instance.show()
 }
 
 
+{/* <div class="gallery__item">
+  <a class="gallery__link" href="large-image.jpg">
+    <img
+      class="gallery__image"
+      src="small-image.jpg"
+      data-source="large-image.jpg"
+      alt="Image description"
+    />
+  </a>
+</div> */}
+
+
+  // const closeModel = e => {
+  //   if (e.code === 'Escape') {
+  //     instance.close();
+  //  }
+  // }
