@@ -33,6 +33,7 @@ function onGalleryContainerClick(e) {
  const closeModal = e => {
     if (e.code === 'Escape') {
       instance.close();
+      // console.log(e);
    }
   }
 
@@ -41,9 +42,11 @@ function onGalleryContainerClick(e) {
     {
       onShow: instance => {
         window.addEventListener('keydown', closeModal);
+        // console.log(e);
        },
       onClose: (instance) => {
         window.removeEventListener('keydown', closeModal);
+        // console.log(e);
       }
     }
   );
@@ -52,7 +55,7 @@ function onGalleryContainerClick(e) {
   
 }
 
-/*
+/*doc
 	 * Function that gets executed before the lightbox will be shown.
 	 * Returning false will prevent the lightbox from showing.
 	 */
