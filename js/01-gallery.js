@@ -30,16 +30,41 @@ function onGalleryContainerClick(e) {
   if (e.target.nodeName !== "IMG") {
     return
   };
- 
+ const closeModal = e => {
+    if (e.code === 'Escape') {
+      instance.close();
+   }
+  }
 
- const instance = basicLightbox.create(`
-    <img src="${e.target.dataset.source}" width="800" height="600">
-`)
+  const instance = basicLightbox.create(`
+    <img src="${e.target.dataset.source}" width="800" height="600">`,
+    {
+      onShow: instance => {
+        window.addEventListener('keydown', closeModal);
+       },
+      onClose: (instance) => {
+        window.removeEventListener('keydown', closeModal);
+      }
+    }
+  );
  
-instance.show()
+  instance.show()
+  
 }
 
+/*
+	 * Function that gets executed before the lightbox will be shown.
+	 * Returning false will prevent the lightbox from showing.
+	 */
+	// onShow: (instance) => {},
+	/*
+	 * Function that gets executed before the lightbox closes.
+	 * Returning false will prevent the lightbox from closing.
+	 */
+  // onClose: (instance) => { },
+  
 
+  
 {/* <div class="gallery__item">
   <a class="gallery__link" href="large-image.jpg">
     <img
@@ -52,8 +77,4 @@ instance.show()
 </div> */}
 
 
-  // const closeModel = e => {
-  //   if (e.code === 'Escape') {
-  //     instance.close();
-  //  }
-  // }
+  
